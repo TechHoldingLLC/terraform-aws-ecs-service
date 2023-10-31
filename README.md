@@ -40,6 +40,7 @@ No modules.
 | <a name="input_max_autoscaling_task_count"></a> [max\_autoscaling\_task\_count](#input\_max\_autoscaling\_task\_count) | Maximum task count in autoscaling | `number` | `5` | no |
 | <a name="input_security_group_ids"></a> [security\_group\_ids](#input\_security\_group\_ids) | ECS security group id | `list(any)` | n/a | yes |
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | VPC subnets id | `list(any)` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to assign to all resources | `map(string)` | `{}` | no |
 | <a name="input_target_groups_arn"></a> [target\_groups\_arn](#input\_target\_groups\_arn) | Target groups arn | `list(any)` | `[]` | no |
 | <a name="input_task_definition_arn"></a> [task\_definition\_arn](#input\_task\_definition\_arn) | ECS task definition arn | `string` | n/a | yes |
 | <a name="input_task_definition_name"></a> [task\_definition\_name](#input\_task\_definition\_name) | ECS task definition name | `string` | n/a | yes |
