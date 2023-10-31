@@ -45,6 +45,11 @@ variable "max_autoscaling_task_count" {
   default     = 5
 }
 
+variable "name" {
+  description = "ECS task definition name"
+  type        = string
+}
+
 variable "security_group_ids" {
   description = "ECS security group id"
   type        = list(any)
@@ -59,11 +64,6 @@ variable "tags" {
   description = "A mapping of tags to assign to all resources"
   type        = map(string)
   default     = {}
-}
-
-variable "task_definition_name" {
-  description = "ECS task definition name"
-  type        = string
 }
 
 variable "task_definition_arn" {

@@ -4,7 +4,7 @@
 
 
 resource "aws_ecs_service" "service" {
-  name                              = var.task_definition_name
+  name                              = var.name
   cluster                           = var.ecs_cluster_id
   task_definition                   = var.task_definition_arn
   desired_count                     = var.desired_task_count
@@ -27,7 +27,7 @@ resource "aws_ecs_service" "service" {
     for_each = toset(var.target_groups_arn)
     content {
       target_group_arn = load_balancer.key
-      container_name   = var.task_definition_name
+      container_name   = var.name
       container_port   = var.container_port
     }
   }
@@ -38,7 +38,7 @@ resource "aws_ecs_service" "service" {
   }
 
   tags = merge(var.tags, {
-    Name = var.task_definition_name
+    Name = var.name
   })
 
   lifecycle {
