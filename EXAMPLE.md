@@ -9,7 +9,7 @@ module "ecs_service" {
   source               = "./ecs-service"
   ecs_cluster_id       = cluster_name
   container_port       = 80
-  task_definition_name = "demo-ecs-service"
+  name                 = "demo-ecs-service"
   task_definition_arn  = ecs_task_definition_arn
   target_groups_arn = [
     target_group_arn
