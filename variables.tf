@@ -55,6 +55,12 @@ variable "subnets" {
   type        = list(any)
 }
 
+variable "tags" {
+  description = "A mapping of tags to assign to all resources"
+  type        = map(string)
+  default     = {}
+}
+
 variable "task_definition_name" {
   description = "ECS task definition name"
   type        = string
@@ -69,10 +75,4 @@ variable "target_groups_arn" {
   description = "Target groups arn"
   type        = list(any)
   default     = []
-}
-
-variable "tags" {
-  description = "A mapping of tags to assign to all resources"
-  type        = map(string)
-  default     = {}
 }
