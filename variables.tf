@@ -7,10 +7,16 @@ variable "autoscaling" {
   type        = bool
 }
 
-variable "autoscaling_target_cpu" {
-  description = "Autoscaling target cpu"
-  type        = number
-  default     = 70
+variable "autoscaling_policy" {
+  description = "Autoscaling target value for CPU/Memory"
+  type = list(object({
+    name                   = string
+    scale_in_cooldown      = number
+    scale_out_cooldown     = number
+    target_value           = number
+    predefined_metric_type = string
+  }))
+  default = []
 }
 
 variable "capacity_provider_strategy" {

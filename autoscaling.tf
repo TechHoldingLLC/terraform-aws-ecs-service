@@ -13,20 +13,21 @@ resource "aws_appautoscaling_target" "autoscaling" {
 }
 
 resource "aws_appautoscaling_policy" "autoscaling" {
-  count              = var.autoscaling ? 1 : 0
-  name               = aws_ecs_service.service.name
+  for_each           = var.autoscaling ? { for policy in var.autoscaling_policy : policy.name => policy } : {}
+  name               = each.value.name
   policy_type        = "TargetTrackingScaling"
   resource_id        = aws_appautoscaling_target.autoscaling[0].resource_id
   scalable_dimension = aws_appautoscaling_target.autoscaling[0].scalable_dimension
   service_namespace  = aws_appautoscaling_target.autoscaling[0].service_namespace
 
   target_tracking_scaling_policy_configuration {
-    scale_in_cooldown  = 90
-    scale_out_cooldown = 90
-    target_value       = var.autoscaling_target_cpu
+
+    scale_in_cooldown  = each.value.scale_in_cooldown
+    scale_out_cooldown = each.value.scale_out_cooldown
+    target_value       = each.value.target_value
 
     predefined_metric_specification {
-      predefined_metric_type = "ECSServiceAverageCPUUtilization"
+      predefined_metric_type = each.value.predefined_metric_type
     }
   }
 }

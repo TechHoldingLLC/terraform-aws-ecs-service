@@ -1,8 +1,6 @@
 # ECS Service
 Below is an examples of calling this module.
 
-Note: By default, autoscaling_target_cpu is set to 70, max_autoscaling_task_count is set to 5 , target_groups_arn is set to [] and health_check_grace_period_seconds is set to 0 in this module.
-
 ## Create ECS Service
 ```
 module "ecs_service" {
@@ -15,9 +13,24 @@ module "ecs_service" {
     target_group_arn
   ]
   desired_task_count                = 1
-  autoscaling                       = true
+  autoscaling                       = true  # Set it false, if you don't require autoscaling
+  autoscaling_policy = [
+    {
+      name                   = "CPU policy"
+      scale_in_cooldown      = 90
+      scale_out_cooldown     = 90
+      target_value           = 70
+      predefined_metric_type = "ECSServiceAverageCPUUtilization"
+    },
+    {
+      name                   = "Memory policy"
+      scale_in_cooldown      = 90
+      scale_out_cooldown     = 100
+      target_value           = 70
+      predefined_metric_type = "ECSServiceAverageMemoryUtilization"
+    }
+  ]
   max_autoscaling_task_count        = 5
-  autoscaling_target_cpu            = 70
   subnets                           = [ecs_subnets_ids]
   security_group_ids                = [security_group_ids]
   health_check_grace_period_seconds = 30
