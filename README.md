@@ -31,7 +31,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_autoscaling"></a> [autoscaling](#input\_autoscaling) | Autoscaling enabled | `bool` | n/a | yes |
-| <a name="input_autoscaling_target_cpu"></a> [autoscaling\_target\_cpu](#input\_autoscaling\_target\_cpu) | Autoscaling target cpu | `number` | `70` | no |
+| <a name="input_autoscaling_policy"></a> [autoscaling\_policy](#input\_autoscaling\_policy) | Autoscaling target value for CPU/Memory | <pre>list(object({<br>    name                   = string<br>    scale_in_cooldown      = number<br>    scale_out_cooldown     = number<br>    target_value           = number<br>    predefined_metric_type = string<br>  }))</pre> | `[]` | no |
 | <a name="input_capacity_provider_strategy"></a> [capacity\_provider\_strategy](#input\_capacity\_provider\_strategy) | proper weights to associate to Fargate & Fargate spot | `map(number)` | n/a | yes |
 | <a name="input_container_port"></a> [container\_port](#input\_container\_port) | ECS container port | `number` | n/a | yes |
 | <a name="input_desired_task_count"></a> [desired\_task\_count](#input\_desired\_task\_count) | ECS desired task count to be running | `number` | n/a | yes |
@@ -50,7 +50,3 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_service_name"></a> [service\_name](#output\_service\_name) | n/a |
-
-## License
-
-Apache 2 Licensed. See [LICENSE](https://github.com/TechHoldingLLC/terraform-aws-ecs-service/blob/main/LICENSE) for full details.
