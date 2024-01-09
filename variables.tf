@@ -89,7 +89,6 @@ variable "target_groups_arn" {
   default     = []
 }
 
-variable "service_connect_config" {
-  description = "Service connect configuration"
-  type        = map(any)
-}
+# variable "service_connect_config" {
+#   description = "Service connect configuration"
+# }
