@@ -38,6 +38,8 @@ No modules.
 | <a name="input_ecs_cluster_id"></a> [ecs\_cluster\_id](#input\_ecs\_cluster\_id) | ECS cluster id | `string` | n/a | yes |
 | <a name="input_health_check_grace_period_seconds"></a> [health\_check\_grace\_period\_seconds](#input\_health\_check\_grace\_period\_seconds) | Task warm up time before health checks in seconds | `number` | `0` | no |
 | <a name="input_max_autoscaling_task_count"></a> [max\_autoscaling\_task\_count](#input\_max\_autoscaling\_task\_count) | Maximum task count in autoscaling | `number` | `5` | no |
+| <a name="input_min_autoscaling_task_count"></a> [min\_autoscaling\_task\_count](#input\_min\_autoscaling\_task\_count) | Minimum autoscaling task count | `number` | 1 | no |
+| <a name="input_service_connect_configuration"></a> [service\_connect\_configuration](#input\_service\_connect\_configuration) | Service Connect Configuration | `map(any)` | n/a | no |
 | <a name="input_name"></a> [name](#input\_name) | ECS task definition name | `string` | n/a | yes |
 | <a name="input_security_group_ids"></a> [security\_group\_ids](#input\_security\_group\_ids) | ECS security group id | `list(any)` | n/a | yes |
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | VPC subnets id | `list(any)` | n/a | yes |

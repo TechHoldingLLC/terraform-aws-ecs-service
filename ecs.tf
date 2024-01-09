@@ -32,6 +32,31 @@ resource "aws_ecs_service" "service" {
     }
   }
 
+  dynamic "service_connect_configuration" {
+    for_each = try([var.service_connect_config], [])
+    content {
+      enabled   = service_connect_configuration.value.enabled
+      namespace = service_connect_configuration.value.namespace
+
+      dynamic "service" {
+        for_each = try([service_connect_configuration.value.service], [])
+
+        content {
+          port_name      = service.value.port_name
+          discovery_name = service.value.discovery_name
+
+          dynamic "client_alias" {
+            for_each = try([service.value.client_alias], [])
+            content {
+              port     = client_alias.value.port
+              dns_name = client_alias.value.dns_name
+            }
+          }
+        }
+      }
+    }
+  }
+
   deployment_circuit_breaker {
     enable   = true
     rollback = true

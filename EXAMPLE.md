@@ -31,8 +31,22 @@ module "ecs_service" {
     }
   ]
   max_autoscaling_task_count        = 5
+  min_autoscaling_task_count        = 1
   subnets                           = [ecs_subnets_ids]
   security_group_ids                = [security_group_ids]
+  service_connect_config = {
+    enabled   = true
+    namespace = << service_connect_namespace >>
+
+    service = {
+      port_name      = << service_connect_portname >>
+      discovery_name = << service_connect_displayname >>
+      client_alias = {
+        port     = var.ecs_task_container_port
+        dns_name = << service_connect_dnsname >>
+      }
+    }
+  }
   health_check_grace_period_seconds = 30
   capacity_provider_strategy = {
     "FARGATE"      = 1

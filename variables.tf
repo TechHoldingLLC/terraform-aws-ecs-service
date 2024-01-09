@@ -51,6 +51,12 @@ variable "max_autoscaling_task_count" {
   default     = 5
 }
 
+variable "min_autoscaling_task_count" {
+  description = "Minimum task count in autoscaling"
+  type        = number
+  default     = 1
+}
+
 variable "name" {
   description = "ECS task definition name"
   type        = string
@@ -81,4 +87,9 @@ variable "target_groups_arn" {
   description = "Target groups arn"
   type        = list(any)
   default     = []
+}
+
+variable "service_connect_config" {
+  description = "Service connect configuration"
+  type        = map(any)
 }
