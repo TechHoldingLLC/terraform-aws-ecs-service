@@ -91,5 +91,16 @@ variable "target_groups_arn" {
 
 variable "service_connect_config" {
   description = "Service connect configuration"
-  type        = map(any)
+  type = object({
+    enabled   = bool
+    namespace = string
+    service   = object({
+      port_name    = string
+      discovery_name = string
+      client_alias = object({
+        port     = number
+        dns_name = string
+      })
+    })
+  })
 }
