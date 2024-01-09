@@ -5,7 +5,7 @@
 resource "aws_appautoscaling_target" "autoscaling" {
   count              = var.autoscaling ? 1 : 0
   max_capacity       = var.max_autoscaling_task_count
-  min_capacity       = var.desired_task_count
+  min_capacity       = min(var.min_autoscaling_task_count,var.desired_task_count)
   resource_id        = "service/${aws_ecs_service.service.cluster}/${aws_ecs_service.service.name}"
   role_arn           = "arn:${local.aws_partition}:iam::${local.account_id}:role/aws-service-role/ecs.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_ECSService"
   scalable_dimension = "ecs:service:DesiredCount"
