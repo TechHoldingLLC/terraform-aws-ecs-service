@@ -24,11 +24,6 @@ variable "capacity_provider_strategy" {
   type        = map(number)
 }
 
-variable "container_port" {
-  description = "ECS container port"
-  type        = number
-}
-
 variable "desired_task_count" {
   description = "ECS desired task count to be running"
   type        = number
