@@ -83,10 +83,10 @@ variable "task_definition_arn" {
   type        = string
 }
 
-variable "target_groups_arn" {
-  description = "Target groups arn"
-  type        = list(any)
-  default     = []
+variable "load_balancer" {
+  description = "Load balancer config"
+  type        = map(any)
+  default     = {}
 }
 
 variable "service_connect_config" {
