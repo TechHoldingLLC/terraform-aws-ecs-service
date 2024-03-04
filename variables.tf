@@ -23,11 +23,7 @@ variable "autoscaling_policy" {
 variable "capacity_provider_strategy" {
   description = "proper weights to associate to Fargate & Fargate spot"
   type        = map(number)
-}
-
-variable "container_port" {
-  description = "ECS container port"
-  type        = number
+  default     = {}
 }
 
 variable "desired_task_count" {
@@ -84,10 +80,10 @@ variable "task_definition_arn" {
   type        = string
 }
 
-variable "target_groups_arn" {
-  description = "Target groups arn"
-  type        = list(any)
-  default     = []
+variable "load_balancer" {
+  description = "Load balancer config"
+  type        = map(any)
+  default     = {}
 }
 
 variable "service_connect_config" {
