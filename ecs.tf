@@ -24,7 +24,7 @@ resource "aws_ecs_service" "service" {
   }
 
   dynamic "load_balancer" {
-    for_each = var.load_balancer
+    for_each = length(var.load_balancer) > 0 ? [var.load_balancer] : []
     content {
       target_group_arn = load_balancer.value.target_group_arn
       container_name   = load_balancer.value.container_name
@@ -33,7 +33,7 @@ resource "aws_ecs_service" "service" {
   }
 
   dynamic "service_connect_configuration" {
-    for_each = try([var.service_connect_config], [])
+    for_each = length(var.service_connect_config) > 0 ? [var.service_connect_config] : []
     content {
       enabled   = service_connect_configuration.value.enabled
       namespace = service_connect_configuration.value.namespace
@@ -68,6 +68,5 @@ resource "aws_ecs_service" "service" {
 
   lifecycle {
     ignore_changes  = [desired_count]
-    prevent_destroy = true
   }
 }

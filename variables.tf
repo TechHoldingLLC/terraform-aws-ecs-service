@@ -88,6 +88,6 @@ variable "load_balancer" {
 
 variable "service_connect_config" {
   description = "Service connect configuration"
-  type        = list(any)
-  default     = []
+  type        = map(any)
+  default     = {}
 }
