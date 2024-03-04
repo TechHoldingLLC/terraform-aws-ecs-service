@@ -5,6 +5,7 @@
 variable "autoscaling" {
   description = "Autoscaling enabled"
   type        = bool
+  default     = false
 }
 
 variable "autoscaling_policy" {
