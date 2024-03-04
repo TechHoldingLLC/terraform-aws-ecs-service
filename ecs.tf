@@ -26,9 +26,9 @@ resource "aws_ecs_service" "service" {
   dynamic "load_balancer" {
     for_each = var.load_balancer
     content {
-      target_group_arn = load_balancer.target_group_arn.value
-      container_name   = load_balancer.container_name.value
-      container_port   = load_balancer.container_port.value
+      target_group_arn = load_balancer.value.target_group_arn
+      container_name   = load_balancer.value.container_name
+      container_port   = load_balancer.value.container_port
     }
   }
 
