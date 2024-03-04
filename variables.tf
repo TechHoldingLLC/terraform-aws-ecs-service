@@ -92,5 +92,6 @@ variable "target_groups_arn" {
 
 variable "service_connect_config" {
   description = "Service connect configuration"
-  type        = object(any)
+  type        = list(any)
+  default     = []
 }
