@@ -6,12 +6,13 @@ Below is an examples of calling this module.
 module "ecs_service" {
   source               = "./ecs-service"
   ecs_cluster_id       = cluster_name
-  container_port       = 80
   name                 = "demo-ecs-service"
   task_definition_arn  = ecs_task_definition_arn
-  target_groups_arn = [
-    target_group_arn
-  ]
+  load_balancer = {
+    target_group_arn = target_group_arn
+    container_port   = 80
+    container_name   = "demo-ecs-service"
+  }
   desired_task_count                = 1
   autoscaling                       = true  # Set it false, if you don't require autoscaling
   autoscaling_policy = [

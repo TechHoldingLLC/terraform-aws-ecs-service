@@ -65,8 +65,12 @@ resource "aws_ecs_service" "service" {
   tags = merge(var.tags, {
     Name = var.name
   })
+  # If propagate tags are set to NONE, the ECS task will not have any tags. With propagate tags, we can specify whether the task will inherit tags from the service or the task definition.  
+  propagate_tags = var.propagate_tags
+  #If ECS managed tags are enabled, the ECS task will automatically be tagged with the ECS service and cluster names.
+  enable_ecs_managed_tags = var.enable_ecs_managed_tags
 
   lifecycle {
-    ignore_changes  = [desired_count]
+    ignore_changes = [desired_count]
   }
 }
