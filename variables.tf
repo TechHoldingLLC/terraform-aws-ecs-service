@@ -62,6 +62,7 @@ variable "name" {
 variable "security_group_ids" {
   description = "ECS security group id"
   type        = list(any)
+  default     = []
 }
 
 variable "subnets" {
