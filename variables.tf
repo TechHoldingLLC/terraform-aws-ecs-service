@@ -22,7 +22,7 @@ variable "autoscaling_policy" {
 
 variable "capacity_provider_strategy" {
   description = "proper weights to associate to Fargate & Fargate spot"
-  type        = map(number)
+  type        = map(any)
   default     = {}
 }
 
@@ -102,4 +102,10 @@ variable "enable_ecs_managed_tags" {
   description = "Specifies whether to enable Amazon ECS managed tags for the tasks within the service."
   type        = bool
   default     = true
+}
+
+variable "ordered_placement_strategy" {
+  description = "Service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence"
+  type        = any
+  default     = {}
 }

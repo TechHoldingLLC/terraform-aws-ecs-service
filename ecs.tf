@@ -18,8 +18,18 @@ resource "aws_ecs_service" "service" {
   dynamic "capacity_provider_strategy" {
     for_each = var.capacity_provider_strategy
     content {
-      weight            = capacity_provider_strategy.value
+      base              = try(capacity_provider_strategy.value.base, null)
+      weight            = try(capacity_provider_strategy.value.weight, null)
       capacity_provider = capacity_provider_strategy.key
+    }
+  }
+
+  dynamic "ordered_placement_strategy" {
+    for_each = var.ordered_placement_strategy
+
+    content {
+      field = try(ordered_placement_strategy.value.field, null)
+      type  = ordered_placement_strategy.value.type
     }
   }
 

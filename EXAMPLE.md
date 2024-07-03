@@ -4,7 +4,7 @@ Below is an examples of calling this module.
 ## Create ECS Service
 ```
 module "ecs_service" {
-  source               = "./ecs-service"
+  source               = "git::https://github.com/TechHoldingLLC/terraform-aws-ecs-service.git"
   ecs_cluster_id       = cluster_name
   name                 = "demo-ecs-service"
   task_definition_arn  = ecs_task_definition_arn
@@ -48,10 +48,22 @@ module "ecs_service" {
       }
     }
   }
+  ordered_placement_strategy = {
+    "ex-ecs" = {
+      type  = "spread"                          #Other possible values random, binpack
+      field = "attribute:ecs.availability-zone" #Not required when type is random
+    }
+  }
   health_check_grace_period_seconds = 30
   capacity_provider_strategy = {
-    "FARGATE"      = 1
-    "FARGATE_SPOT" = 1
+    "FARGATE" = {
+      base   = 10
+      weight = 40
+    }
+    "FARGATE_SPOT" = {
+      base   = 10
+      weight = 60
+    }
     }
 }
 ```
