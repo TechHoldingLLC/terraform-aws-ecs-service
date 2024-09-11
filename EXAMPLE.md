@@ -4,7 +4,7 @@ Below is an examples of calling this module.
 ## Create ECS Service
 ```
 module "ecs_service" {
-  source               = "./ecs-service"
+  source               = "git::https://github.com/TechHoldingLLC/terraform-aws-ecs-service.git"
   ecs_cluster_id       = cluster_name
   name                 = "demo-ecs-service"
   task_definition_arn  = ecs_task_definition_arn
@@ -32,7 +32,6 @@ module "ecs_service" {
     }
   ]
   max_autoscaling_task_count        = 5
-  min_autoscaling_task_count        = 1
   subnets                           = [ecs_subnets_ids]
   security_group_ids                = [security_group_ids]
   service_connect_config = {
@@ -49,6 +48,7 @@ module "ecs_service" {
     }
   }
   health_check_grace_period_seconds = 30
+  wait_for_steady_state             = true
   capacity_provider_strategy = {
     "FARGATE"      = 1
     "FARGATE_SPOT" = 1

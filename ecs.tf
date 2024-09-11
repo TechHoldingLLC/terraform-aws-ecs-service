@@ -67,8 +67,10 @@ resource "aws_ecs_service" "service" {
   })
   # If propagate tags are set to NONE, the ECS task will not have any tags. With propagate tags, we can specify whether the task will inherit tags from the service or the task definition.  
   propagate_tags = var.propagate_tags
-  #If ECS managed tags are enabled, the ECS task will automatically be tagged with the ECS service and cluster names.
+  # If ECS managed tags are enabled, the ECS task will automatically be tagged with the ECS service and cluster names.
   enable_ecs_managed_tags = var.enable_ecs_managed_tags
+  # If true, Terraform will wait for the service to reach a steady state. like `aws ecs wait services-stable`
+  wait_for_steady_state = var.wait_for_steady_state
 
   lifecycle {
     ignore_changes = [desired_count]
