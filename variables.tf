@@ -97,3 +97,9 @@ variable "enable_ecs_managed_tags" {
   type        = bool
   default     = true
 }
+
+variable "wait_for_steady_state" {
+  description = "If true, Terraform will wait for the service to reach a steady state."
+  type        = bool
+  default     = false
+}
