@@ -32,7 +32,6 @@ module "ecs_service" {
     }
   ]
   max_autoscaling_task_count        = 5
-  min_autoscaling_task_count        = 1
   subnets                           = [ecs_subnets_ids]
   security_group_ids                = [security_group_ids]
   service_connect_config = {
@@ -55,6 +54,7 @@ module "ecs_service" {
     }
   }
   health_check_grace_period_seconds = 30
+  wait_for_steady_state             = true
   capacity_provider_strategy = {
     "FARGATE" = {
       base   = 10

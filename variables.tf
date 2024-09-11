@@ -48,12 +48,6 @@ variable "max_autoscaling_task_count" {
   default     = 5
 }
 
-variable "min_autoscaling_task_count" {
-  description = "Minimum task count in autoscaling"
-  type        = number
-  default     = 1
-}
-
 variable "name" {
   description = "ECS task definition name"
   type        = string
@@ -88,7 +82,7 @@ variable "load_balancer" {
 
 variable "service_connect_config" {
   description = "Service connect configuration"
-  type        = map(any)
+  type        = any
   default     = {}
 }
 
@@ -108,4 +102,10 @@ variable "ordered_placement_strategy" {
   description = "Service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence"
   type        = any
   default     = {}
+}
+
+variable "wait_for_steady_state" {
+  description = "If true, Terraform will wait for the service to reach a steady state."
+  type        = bool
+  default     = false
 }
