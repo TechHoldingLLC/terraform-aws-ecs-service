@@ -32,7 +32,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_autoscaling"></a> [autoscaling](#input\_autoscaling) | Autoscaling enabled | `bool` | `false` | no |
 | <a name="input_autoscaling_policy"></a> [autoscaling\_policy](#input\_autoscaling\_policy) | Autoscaling target value for CPU/Memory | <pre>list(object({<br>    name                   = string<br>    scale_in_cooldown      = number<br>    scale_out_cooldown     = number<br>    target_value           = number<br>    predefined_metric_type = string<br>  }))</pre> | `[]` | no |
-| <a name="input_capacity_provider_strategy"></a> [capacity\_provider\_strategy](#input\_capacity\_provider\_strategy) | proper weights to associate to Fargate & Fargate spot | `map(number)` | `{}` | no |
+| <a name="input_capacity_provider_strategy"></a> [capacity\_provider\_strategy](#input\_capacity\_provider\_strategy) | proper weights to associate to Fargate & Fargate spot | `map(any)` | `{}` | no |
 | <a name="input_desired_task_count"></a> [desired\_task\_count](#input\_desired\_task\_count) | ECS desired task count to be running | `number` | n/a | yes |
 | <a name="input_ecs_cluster_id"></a> [ecs\_cluster\_id](#input\_ecs\_cluster\_id) | ECS cluster id | `string` | n/a | yes |
 | <a name="input_enable_ecs_managed_tags"></a> [enable\_ecs\_managed\_tags](#input\_enable\_ecs\_managed\_tags) | Specifies whether to enable Amazon ECS managed tags for the tasks within the service. | `bool` | `true` | no |
@@ -40,6 +40,7 @@ No modules.
 | <a name="input_load_balancer"></a> [load\_balancer](#input\_load\_balancer) | Load balancer config | `map(any)` | `{}` | no |
 | <a name="input_max_autoscaling_task_count"></a> [max\_autoscaling\_task\_count](#input\_max\_autoscaling\_task\_count) | Maximum task count in autoscaling | `number` | `5` | no |
 | <a name="input_name"></a> [name](#input\_name) | ECS task definition name | `string` | n/a | yes |
+| <a name="input_ordered_placement_strategy"></a> [ordered\_placement\_strategy](#input\_ordered\_placement\_strategy) | Service level strategy rules that are taken into consideration during task placement. List from top to bottom in order of precedence | `any` | `{}` | no |
 | <a name="input_propagate_tags"></a> [propagate\_tags](#input\_propagate\_tags) | Specifies whether to propagate the tags from the task definition or the service to the tasks. The valid values are SERVICE, TASK\_DEFINITION and NONE | `string` | `"TASK_DEFINITION"` | no |
 | <a name="input_security_group_ids"></a> [security\_group\_ids](#input\_security\_group\_ids) | ECS security group id | `list(any)` | n/a | yes |
 | <a name="input_service_connect_config"></a> [service\_connect\_config](#input\_service\_connect\_config) | Service connect configuration | `any` | `{}` | no |

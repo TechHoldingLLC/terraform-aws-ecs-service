@@ -47,11 +47,23 @@ module "ecs_service" {
       }
     }
   }
+  ordered_placement_strategy = {
+    "ex-ecs" = {
+      type  = "spread"                          #Other possible values random, binpack
+      field = "attribute:ecs.availability-zone" #Not required when type is random
+    }
+  }
   health_check_grace_period_seconds = 30
   wait_for_steady_state             = true
   capacity_provider_strategy = {
-    "FARGATE"      = 1
-    "FARGATE_SPOT" = 1
+    "FARGATE" = {
+      base   = 10
+      weight = 40
+    }
+    "FARGATE_SPOT" = {
+      base   = 10
+      weight = 60
+    }
     }
 }
 ```
