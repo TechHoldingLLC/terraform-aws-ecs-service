@@ -8,6 +8,7 @@ module "ecs_service" {
   ecs_cluster_id       = cluster_name
   name                 = "demo-ecs-service"
   task_definition_arn  = ecs_task_definition_arn
+  launch_type          = "EC2"  # Set it to EC2/EXTERNL as per use, default value = "FATGATE"
   load_balancer = {
     target_group_arn = target_group_arn
     container_port   = 80
