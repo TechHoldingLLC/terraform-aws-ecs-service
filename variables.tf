@@ -86,6 +86,12 @@ variable "load_balancer" {
   default     = {}
 }
 
+variable "launch_type" {
+  description = "ECS task launchtype"
+  type        = string
+  default     = "FARGATE"
+}
+
 variable "service_connect_config" {
   description = "Service connect configuration"
   type        = any
