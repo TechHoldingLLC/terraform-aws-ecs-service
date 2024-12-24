@@ -31,12 +31,13 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_autoscaling"></a> [autoscaling](#input\_autoscaling) | Autoscaling enabled | `bool` | `false` | no |
-| <a name="input_autoscaling_policy"></a> [autoscaling\_policy](#input\_autoscaling\_policy) | Autoscaling target value for CPU/Memory | <pre>list(object({<br>    name                   = string<br>    scale_in_cooldown      = number<br>    scale_out_cooldown     = number<br>    target_value           = number<br>    predefined_metric_type = string<br>  }))</pre> | `[]` | no |
+| <a name="input_autoscaling_policy"></a> [autoscaling\_policy](#input\_autoscaling\_policy) | Autoscaling target value for CPU/Memory | <pre>list(object({<br/>    name                   = string<br/>    scale_in_cooldown      = number<br/>    scale_out_cooldown     = number<br/>    target_value           = number<br/>    predefined_metric_type = string<br/>  }))</pre> | `[]` | no |
 | <a name="input_capacity_provider_strategy"></a> [capacity\_provider\_strategy](#input\_capacity\_provider\_strategy) | proper weights to associate to Fargate & Fargate spot | `map(any)` | `{}` | no |
 | <a name="input_desired_task_count"></a> [desired\_task\_count](#input\_desired\_task\_count) | ECS desired task count to be running | `number` | n/a | yes |
 | <a name="input_ecs_cluster_id"></a> [ecs\_cluster\_id](#input\_ecs\_cluster\_id) | ECS cluster id | `string` | n/a | yes |
 | <a name="input_enable_ecs_managed_tags"></a> [enable\_ecs\_managed\_tags](#input\_enable\_ecs\_managed\_tags) | Specifies whether to enable Amazon ECS managed tags for the tasks within the service. | `bool` | `true` | no |
 | <a name="input_health_check_grace_period_seconds"></a> [health\_check\_grace\_period\_seconds](#input\_health\_check\_grace\_period\_seconds) | Task warm up time before health checks in seconds | `number` | `0` | no |
+| <a name="input_launch_type"></a> [launch\_type](#input\_launch\_type) | ECS task launchtype | `string` | `"FARGATE"` | no |
 | <a name="input_load_balancer"></a> [load\_balancer](#input\_load\_balancer) | Load balancer config | `map(any)` | `{}` | no |
 | <a name="input_max_autoscaling_task_count"></a> [max\_autoscaling\_task\_count](#input\_max\_autoscaling\_task\_count) | Maximum task count in autoscaling | `number` | `5` | no |
 | <a name="input_name"></a> [name](#input\_name) | ECS task definition name | `string` | n/a | yes |
@@ -53,7 +54,8 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_service_name"></a> [service\_name](#output\_service\_name) | n/a |
+| <a name="output_arn"></a> [arn](#output\_arn) | n/a |
+| <a name="output_name"></a> [name](#output\_name) | n/a |
 
 ## License
 

@@ -2,6 +2,10 @@
 #  ecs-service/outputs.tf  #
 ############################
 
-output "service_name" {
+output "name" {
   value = aws_ecs_service.service.name
+}
+
+output "arn" {
+  value = aws_ecs_service.service.id
 }
