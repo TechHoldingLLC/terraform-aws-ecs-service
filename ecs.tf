@@ -9,7 +9,7 @@ resource "aws_ecs_service" "service" {
   task_definition                   = var.task_definition_arn
   desired_count                     = var.desired_task_count
   health_check_grace_period_seconds = var.health_check_grace_period_seconds
-  launch_type                       = var.launch_type
+  launch_type                       = length(var.capacity_provider_strategy) > 0 ? null : var.launch_type
 
   network_configuration {
     security_groups = var.security_group_ids
