@@ -115,3 +115,9 @@ variable "wait_for_steady_state" {
   type        = bool
   default     = false
 }
+
+variable "assign_public_ip" {
+  description = "Assign a public IP address to the ENI (Fargate launch type only). Valid values are true or false."
+  type        = bool
+  default     = false
+}
