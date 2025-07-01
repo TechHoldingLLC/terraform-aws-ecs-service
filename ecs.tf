@@ -12,8 +12,9 @@ resource "aws_ecs_service" "service" {
   launch_type                       = length(var.capacity_provider_strategy) > 0 ? null : var.launch_type
 
   network_configuration {
-    security_groups = var.security_group_ids
-    subnets         = var.subnets
+    security_groups  = var.security_group_ids
+    subnets          = var.subnets
+    assign_public_ip = var.assign_public_ip
   }
 
   dynamic "capacity_provider_strategy" {
