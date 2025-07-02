@@ -69,6 +69,17 @@ resource "aws_ecs_service" "service" {
     }
   }
 
+  dynamic "service_registries" {
+    for_each = length(var.service_registries) > 0 ? [var.service_registries] : []
+
+    content {
+      container_name = try(service_registries.value.container_name, null)
+      container_port = try(service_registries.value.container_port, null)
+      port           = try(service_registries.value.port, null)
+      registry_arn   = service_registries.value.registry_arn
+    }
+  }
+
   deployment_circuit_breaker {
     enable   = true
     rollback = true

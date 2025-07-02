@@ -121,3 +121,9 @@ variable "assign_public_ip" {
   type        = bool
   default     = false
 }
+
+variable "service_registries" {
+  description = "Service discovery registries for the service"
+  type        = any
+  default     = {}
+}
