@@ -80,9 +80,13 @@ resource "aws_ecs_service" "service" {
     }
   }
 
-  deployment_circuit_breaker {
-    enable   = true
-    rollback = true
+  dynamic "deployment_circuit_breaker" {
+    for_each = length(var.deployment_circuit_breaker) > 0 ? [var.deployment_circuit_breaker] : []
+
+    content {
+      enable   = deployment_circuit_breaker.value.enable
+      rollback = deployment_circuit_breaker.value.rollback
+    }
   }
 
   tags = merge(var.tags, {
