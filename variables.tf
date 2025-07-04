@@ -127,3 +127,9 @@ variable "service_registries" {
   type        = any
   default     = {}
 }
+
+variable "deployment_circuit_breaker" {
+  description = "Configuration block for deployment circuit breaker"
+  type        = any
+  default     = {}
+}
