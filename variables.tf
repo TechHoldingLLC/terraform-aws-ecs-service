@@ -133,3 +133,9 @@ variable "deployment_circuit_breaker" {
   type        = any
   default     = {}
 }
+
+variable "enable_execute_command" {
+  description = "Enable execute command"
+  type        = bool
+  default     = true
+}
